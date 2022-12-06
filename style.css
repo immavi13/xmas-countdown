@@ -1,0 +1,451 @@
+/*
+creiamo tutti i colori della pagina web
+per provare i comandi, apri la pagina web su google e poi tasto destro, ispeziona 
+vai nel blocco che ti interessa e cambia le varie cose
+*/
+
+/* buona prassi: creare regole di reset con un selettore "*" 
+noi vogliamo creare le nostre regole e non quelle di default che di dà il browser
+CSS RESET
+*/
+* {
+    box-sizing: border-box;
+    margin: 0; /* rimuoviamo il margine da tutti gli elementi */
+    padding: 0;
+} 
+
+/*a tutte le immagini impongo la regola che devono adattarsi al contenitore
+per fare la prova: scrivi nel .contanier border: 2px dashed red;
+*/
+img{
+    max-width: 100%;
+}
+
+html {
+    background-color: #FBCEB1;
+    font-family: 'Livvic', sans-serif; /*preso da google fonts (css rule)*/
+    line-height: 1; /* 1 viene moltiplicato per la dimensione del fontd*/
+}
+
+.container { /*richiamiamo la classe del contenitore così ".contenitore" */
+    /* 
+    background-color: #ffff;
+    width: 350px;
+    così si forma il quadrato bianco che però non ci serve dopo
+    */
+    width: 600px;
+    margin: 32px auto 0 auto; 
+    /*per destra e sinistra usiamo auto così lo decentra automaticamente, 
+    sequenza oraria: top, right, bottom (mettiamo 0 perchè non dobbiamo distanziarlo
+    da altri elementi), left 
+    margin: scritto così agisce solo in orizzontale 
+    */
+}
+
+/*posizioniamo il pannello rosso sopra l'albero*/
+.xmas-stage {
+    position: relative;
+}
+
+/* applichiamo al pannello */
+.panel {
+    background-color: #c52929;
+    padding: 16px 24px; /* per distanziare meglio il blocchi dei giorni, ore, minuti, secondi
+    applicando un padding sopra e sotto (1 valore) e poi destra e sinistra (2 valore)*/
+    border-radius: 8px; /* smussiamo gli angoli del contenitore del countdown*/
+    
+    /*posizioniamo il pannello blu sopra l'albero*/
+    position: absolute;
+    top: 310px;
+    width: 100%;
+}
+
+/*Pannelli per cornice*/
+.panelCornTop{
+    background-color:  #e60000;
+    padding: 16px 24px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+.panelCornBottom{
+    background-color:  #e60000;
+    padding: 16px 24px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+/*sistemiamo il selettore per tag dell'h1
+questa scritta funzione quando finisce il countdown
+*/
+h1 {
+    text-align: center; /* centriamo */
+    color: #dd7cfa;
+    margin-bottom: 15px;
+    font-size: 33px; /* rimpicciolisco il titolo*/
+    font-weight: 600;
+}
+
+
+/* seleziono il genitore dei 4 counter block, per disporli uno di fianco all'altro,
+perchè di dafault non accade questo, ma vengono posizionati verticalmente */
+.counter {
+    display: flex; /*va da sinistra verso destra */
+    justify-content: space-between; /*con questa proprietà riesco a mettere i quadratini
+    uno affianco all'altro creando uno spazio tra di loro*/ 
+}
+.counter-block {
+    color: #ffffff;
+    text-align: center;
+    font-weight: 400;
+}
+
+/*seletttore avanzato che seleziona l'ultimo dei figli (
+per far diventare giallo il counter dei secondi*/
+.counter-block:last-child {
+    color: #f2ad41
+}
+
+.counter-block-number {
+    font-size: 48px;
+}
+
+.counter-block-label {
+    font-size: 20px;
+}
+
+/*Regali e classe generica*/
+.gift {
+    position: absolute;
+    width: 120px;
+}
+
+/*Regali e classe specifica*/
+.gift_1 {
+    bottom: 50px;
+    right: 100px;
+    width: 90px;
+}
+.gift_2 {
+    bottom: 50px;
+    left: 85px;
+}
+
+.gift_3 {
+    bottom: 50px;
+    left: 1px;
+    width: 80px;
+}
+
+/*Babbo natale*/
+.babbo{
+    position: absolute;
+    width: 120px; 
+    bottom: 525px;
+    right: 50px;
+}
+
+/*Pupazzo di neve*/
+.pupazzo{
+    position: absolute;
+    width: 120px; 
+    bottom: 522px;
+    left: 50px;
+}
+
+/* North pole */
+.northpole {
+    position: absolute;
+    width: 250px; 
+    bottom: 10px;
+    right: -140px;
+}
+
+/*Candito*/
+.candito{
+    position: absolute;
+    width: 40px; 
+    bottom: 215px;
+    right: 163px;
+}
+
+/*Animazioni quando ci passi sopra col muose o ruotano oppure zoom (comando hover)*/
+@keyframes jingle {
+    from{
+        transform: rotate(-15deg);
+    }
+    to{
+        transform: rotate(15deg);
+    }
+}
+
+/*jingle rotazione*/
+@keyframes jingle2 {
+    from{
+        transform: rotate(-275deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+/*saltello*/
+@keyframes bump {
+    from {
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.2);
+    }
+}
+
+/*flip orizzontale per nothpole*/
+@keyframes flip {
+    from {
+        transform: rotateY(160deg);
+    }
+    to{
+        transform: rotateY(-200deg);
+    }
+}
+
+/*animazione pannelli sopra e sotto*/
+/*@keyframes color{
+    25% {background-color: #e60000;}
+    50% {background-color: #bae85c;}
+    100% {background-color: #fad201;}
+}
+
+/*applichiamo le animazioni*/
+.gift:hover {
+    animation-name: jingle;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; /*direzione alternata*/
+}
+
+.candito:hover {
+    animation-name: jingle2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse; 
+}
+
+.babbo:hover {
+    animation-name: bump;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; 
+}
+.pupazzo:hover {
+    animation-name: bump;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; 
+}
+
+.northpole:hover {
+	animation: flip 3s infinite;
+}
+
+/*.panelCornTop{
+    animation: color 15s infinite;
+}
+
+.panelCornBottom{
+    animation: color 15s infinite;
+    
+}
+
+
+/*testo dinamico xmas is coming*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.waviy {
+    position: relative;
+}
+
+.waviy span {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 24px;
+    margin-left: 15px;
+    text-align: center; /* centriamo */
+    color: #dd7cfa;
+    text-transform: uppercase;
+    animation: flipxmas 5s infinite;
+    animation-delay: calc(.2s * var(--i))    
+}
+
+/*flip orizzontale per scritta dinamica*/
+@keyframes flipxmas {
+    from {
+        transform: rotateY(160deg);
+    }
+    to{
+        transform: rotateY(-90deg);
+    }
+}
+ 
+
+/*neve background*/
+.snow, .snow:before, .snow:after {
+  position: absolute;
+  top: -600px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: radial-gradient(5px 5px at 34px 172px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 86px 25px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 388px 47px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 53px 303px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 373px 475px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 196px 261px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 434px 424px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 234px 213px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 393px 356px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 537px 497px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 151px 362px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 110px 99px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 270px 111px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 351px 424px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 459px 279px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 584px 126px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 303px 486px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 132px 292px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 120px 162px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 396px 460px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 169px 508px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 177px 298px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 575px 410px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 29px 140px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 82px 378px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 482px 473px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 56px 24px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 157px 73px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 97px 496px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 240px 225px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 12px 102px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 518px 417px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 323px 155px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 534px 119px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 294px 245px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 270px 432px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 406px 292px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 42px 233px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 109px 160px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 158px 359px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 212px 133px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 303px 536px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 513px 314px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 54px 346px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 127px 115px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 559px 29px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 493px 581px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 339px 414px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 349px 481px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 331px 86px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 497px 385px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 65px 332px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 432px 593px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 377px 240px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 293px 224px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 455px 336px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 93px 50px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 129px 453px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 393px 78px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 364px 75px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 66px 19px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 254px 199px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 178px 454px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 499px 280px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 419px 40px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 179px 593px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 66px 529px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 498px 329px, #ffffff 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 381px 464px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 172px 17px, #ffffff 50%, rgba(0, 0, 0, 0));
+  background-size: 600px 600px;
+  animation: snow 5s linear infinite;
+}
+#snow {
+  z-index: -1;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/191814/flake1.png'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/191814/flake2.png'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/191814/flake3.png');
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  animation: snow 10s linear infinite;
+}
+/*animazione neve*/
+@keyframes snow {
+    0% {
+        background-position: 0px 0px, 0px 0px, 0px 0px;
+    }
+    50% {
+        background-position: 500px 500px, 100px 200px, -100px 150px;
+    }
+    100% {
+        background-position: 500px 1000px, 200px 400px, -100px 300px;
+    }
+}
+
+
+/*serie di natale*/
+#Christmas_Lights {
+    top: 0px;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 1000px;
+    /* z-index: 1000 non va inserito altrimenti non funzionano le aminazione degli oggetti*/
+}
+  
+.light_cord {
+    fill: none;
+    stroke: #174700;
+}
+  
+.light_fixture {
+    fill: #134413;
+}
+  
+.red_bulb {
+    fill: #ca1d23;
+    stroke: #867f7f;
+    stroke-miterlimit: 10;
+}
+  
+.green_bulb {
+    fill: #2bc96a;
+    stroke: #867f7f;
+    stroke-miterlimit: 10;
+}
+  
+.blue_bulb {
+    fill: #2b43cd;
+    stroke: #867f7f;
+    stroke-miterlimit: 10;
+}
+  
+.white_bulb {
+    fill: #f87ff4;
+    stroke: #867f7f;
+    stroke-miterlimit: 10;
+}
+  
+.gold_bulb {
+    fill: #ffcc5e;
+    stroke: #867f7f;
+    stroke-miterlimit: 10;
+}
+  
+/* Simply changing the opacity of the SVG fill to create the glow effect for the bulbs */
+  
+.bulb {
+    animation-name: glow;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+  
+@keyframes glow {
+    0% {
+      fill-opacity: 0.25;
+    }
+    100% {
+      fill-opacity: 1.0
+    }
+}
+  
+  
+/* Made a set of ten animation delays to create a more random effect of lights blinking.  
+Simplest way without jumping through SVG hoops. */
+  
+.blink-1 {
+    animation-delay: 0.6s;
+}
+  
+.blink-2 {
+    animation-delay: 2s;
+}
+  
+.blink-3 {
+    animation-delay: 2s;
+}
+  
+.blink-4 {
+    animation-delay: 6s;
+}
+  
+.blink-5 {
+    animation-delay: 2.5s;
+}
+  
+.blink-6 {
+    animation-delay: .3s;
+}
+  
+.blink-7 {
+    animation-delay: 2s;
+}
+  
+.blink-8 {
+    animation-delay: .2s;
+}
+  
+.blink-9 {
+    animation-delay: 0.95s;
+}
+  
+.blink-10 {
+    animation-delay: 1.2s;
+}
+
